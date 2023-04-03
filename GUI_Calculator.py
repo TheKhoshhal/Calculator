@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 
 var = ""
 
@@ -14,9 +15,12 @@ def clear():
 
 def equal():
     global var
-    result = str(eval(var))
-    input_text.set(result)
-    var = ""
+    try:
+        result = str(eval(var))
+        input_text.set(result)
+        var = ""
+    except:
+        messagebox.showerror("Error", "Can't be divided")
 
 def back_space():
     global var
@@ -34,7 +38,7 @@ input_text = tk.StringVar()
 Frm_input = tk.Frame(master=win, height=50, width=400, highlightbackground="black", highlightcolor="black", highlightthickness=3)
 Frm_input.pack(side=tk.TOP)
 
-Ent_input = tk.Entry(master=Frm_input, font=('arial', 18, 'bold'), textvariable=input_text, width=50, bg="#eee", bd=0, justify=tk.RIGHT)
+Ent_input = tk.Entry(master=Frm_input, font=('arial', 18, 'bold'), textvariable=input_text, width=50, bg="#eee", bd=0, justify=tk.RIGHT, state=tk.DISABLED, disabledbackground='white', disabledforeground='black')
 Ent_input.pack(ipady=10)
 
 #Buttons
